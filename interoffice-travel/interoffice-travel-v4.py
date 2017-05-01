@@ -1,7 +1,7 @@
 #!/bin/python
 
 import sys
-sys.stdin = open('./2-input', 'r')
+sys.stdin = open('./2-input.txt', 'r')
 
 n = int(raw_input().strip())
 # Each index 'i' contains the energy necessary to travel 'i' units.
@@ -91,7 +91,7 @@ def computeShortestPathForAllNodes():
 def computeEnergy():
     global sp
     output = ""
-    for meetingRoom in range(1, 3):
+    for meetingRoom in range(1, n+1):
         energy = 0
         print "Start INIT meetingroom ", meetingRoom
         sp = [0 for _ in range(0, n+1)]
