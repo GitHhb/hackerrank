@@ -2,7 +2,6 @@
 
 import sys
 import array
-import cProfile
 
 sys.stdin = open('./2-input', 'r')
 # sys.stdin = open('./1-input', 'r')
@@ -25,12 +24,7 @@ for a0 in xrange(n-1):
 # shortest path, matrix of shortest path between nodes
 # -1      => shortest path not determined
 # x == y => distance = 0
-# sp = [[-1 if x != y else 0 for x in range(0, n+1)] for y in range(0, n+1)]
-# sp = array.array('i', [-1 for _ in range(n+1)])
 sp = [-1 for _ in xrange(0, n+1)]
-# sp = []
-# print sp[39403]
-# sys.exit()
 
 def printMatrix(matrix):
     for i in xrange(1, n+1):
@@ -76,27 +70,10 @@ def shortestPath (start, endpoints, length, sp):
             sp[e] = length
             # compute path length for points connected to e
             newEndpointsExtend(con[e])
-            # pr.enable()
-            # for i in con[e]:
-                # nrNewEndpoints = incend(newEndpoints, nrNewEndpoints, i)
-                # newEndpoints[nrNewEndpoints] = i
-                # nrNewEndpoints += 1
-            # map(lambda x: newEndpoints[nrNewEndpoints] = x; nrNew , con[e])
-            # pr.disable()
-            # print "2--> ", start, e, newEndpoints
 
-        # endpoints = newEndpoints[:nrNewEndpoints]
         endpoints = newEndpoints
         length += 1
-        # shortestPath(start, set(newEndpoints), length + 1, sp)
-
-        # printLog("  NEXT ", "STARTSET ", " LEN", length+1)
-        # printLog("  RETURNED ", "( ", start, ", ", length, " )", " MINPATHLENGHT ")
     return  # minPathLength
-
-#shortestPath(3, 4, 0, [])
-#printMatrix(sp)
-#sys.exit()
 
 def computeShortestPathForAllNodes():
     for i in xrange(1, n+1):
@@ -105,7 +82,6 @@ def computeShortestPathForAllNodes():
         # only compute sp if not computed yet
         shortestPath(i, [i], [], 0)
 
-# pr = cProfile.Profile()
 def computeEnergy():
     global sp
     output = ""
@@ -121,8 +97,4 @@ def computeEnergy():
     return output
 
 
-# computeShortestPathForAllNodes()
-
-# cProfile.run("computeEnergy()")
 print computeEnergy()
-# pr.print_stats()
